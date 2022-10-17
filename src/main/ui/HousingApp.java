@@ -43,7 +43,6 @@ public class HousingApp {
     }
 
     private void betterAppointmentOption() {
-        betterAppointmentOption();
         System.out.println("Please enter the ID of the first appointment");
         String id1 = input.next();
         System.out.println("Please enter the ID of your second appointment");
@@ -67,8 +66,8 @@ public class HousingApp {
 
         for (Iterator<Appointment> itr = user.viewSchedule().iterator(); itr.hasNext(); ) {
             Appointment target = itr.next();
-            if (targetId.equals(targetId)) {
-                itr.remove(); // right call
+            if (target.getId().equals(targetId)) {
+                itr.remove();
             }
         }
     }
