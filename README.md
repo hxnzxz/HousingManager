@@ -28,3 +28,7 @@ An example of text with **bold** and *italic* fonts.
 in my schedule
 - As a user, I want to be able to efficiently compare prices 
 and locations between two housings
+
+## External Sources
+-https://www.java67.com/2015/10/how-to-solve-concurrentmodificationexception-in-java-arraylist.html
+was used to help fix ArrayList's remove() function causing errors

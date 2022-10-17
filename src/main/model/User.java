@@ -10,8 +10,7 @@ public class User {
     private List<Appointment> schedule;
     private int wallet;
 
-    public User(int money) {
-        this.wallet = money;
+    public User() {
         this.schedule = new ArrayList<>();
 
     }
@@ -28,12 +27,23 @@ public class User {
     // MODIFIES: this
     // EFFECTS: Removes appointment from user schedule
     public void removeAppointment(Appointment target) {
+        this.schedule.remove(target);
+    }
 
+    // REQUIRES: Target appointment's ID to exist
+    // EFFECTS: Returns the appointment with the corresponding target ID
+    public Appointment targetAppointment(String id) {
+        for (Appointment target : this.schedule) {
+            if (target.getId().equals(id)) {
+                return target;
+            }
+        }
+        return null;
     }
 
     // EFFECTS: Prints out all appointments from current schedule
     public List<Appointment> viewSchedule() {
-        return null;
+        return this.schedule;
     }
 
 }
