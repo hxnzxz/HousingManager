@@ -38,6 +38,7 @@ public class User {
                 return target;
             }
         }
+        System.out.println("Error: Given ID does not exist in schedule!");
         return null;
     }
 

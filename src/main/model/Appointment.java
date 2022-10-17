@@ -37,6 +37,7 @@ public class Appointment {
     }
 
     // EFFECTS: Given two appointments return the one that has a cheaper rent
+    // with bias for current appointment if both rents are equal
     public Appointment cheaper(Appointment appointment2) {
         if (getRent() > appointment2.getRent()) {
             return appointment2;
@@ -46,6 +47,7 @@ public class Appointment {
     }
 
     // EFFECTS: Given two appointments return the one that is closer to (0,0) as a coordinate
+    // with bias for current appointment if the distance from both are equal
     public Appointment closer(Appointment appointment2) {
         if (distanceToLocation() > appointment2.distanceToLocation()) {
             return appointment2;

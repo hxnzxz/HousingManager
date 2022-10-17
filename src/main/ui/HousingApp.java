@@ -15,11 +15,13 @@ public class HousingApp {
     User user;
     boolean running;
 
-
+    // EFFECTS: Runs housing application
     public HousingApp() {
         runHousingApp();
     }
 
+    // MODIFIES: this
+    // EFFECTS: Modifies User domain based on user input
     private void runHousingApp() {
         this.running = true;
         this.user = new User();
@@ -42,6 +44,8 @@ public class HousingApp {
         }
     }
 
+    // EFFECTS: Provides description of a better appointment based on vague understanding
+    // of rent and distance
     private void betterAppointmentOption() {
         System.out.println("Please enter the ID of the first appointment");
         String id1 = input.next();
@@ -60,6 +64,8 @@ public class HousingApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: Removes desired appointment from schedule via ID
     private void removeAppointmentOption() {
         System.out.println("Please enter the ID of the appointment you would like to remove");
         String targetId = input.next();
@@ -71,6 +77,9 @@ public class HousingApp {
             }
         }
     }
+
+    // MODIFIES: this
+    // EFFECTS: Adds a new appointment designed from scratch by user
 
     private void addAppointmentOption() {
         System.out.println("Please enter a unique ID for your new appointment");
@@ -85,6 +94,7 @@ public class HousingApp {
         System.out.println("Appointment added!");
     }
 
+    // EFFECTS: Prints current schedule of appoints if any
     private void scheduleOption() {
         if (user.viewSchedule().isEmpty()) {
             System.out.println("You currently don't have any appointments!");
