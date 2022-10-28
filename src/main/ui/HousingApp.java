@@ -69,7 +69,8 @@ public class HousingApp {
     private void removeAppointmentOption() {
         System.out.println("Please enter the ID of the appointment you would like to remove");
         String targetId = input.next();
-
+        // Taken from
+        // :https://www.java67.com/2015/10/how-to-solve-concurrentmodificationexception-in-java-arraylist.html
         for (Iterator<Appointment> itr = user.viewSchedule().iterator(); itr.hasNext(); ) {
             Appointment target = itr.next();
             if (target.getId().equals(targetId)) {

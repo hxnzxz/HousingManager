@@ -28,6 +28,9 @@ An example of text with **bold** and *italic* fonts.
 in my schedule
 - As a user, I want to be able to efficiently compare prices 
 and locations between two housings
+- As a user, I want to be able to safe my schedule of appointments
+- As a user, I want to be able to reload a pre-existing schedule that I saved previously
+
 
 ## External Sources
 -https://www.java67.com/2015/10/how-to-solve-concurrentmodificationexception-in-java-arraylist.html

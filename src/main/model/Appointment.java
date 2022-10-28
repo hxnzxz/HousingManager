@@ -1,5 +1,10 @@
 package model;
 
+import netscape.javascript.JSObject;
+import org.json.JSONObject;
+
+import javax.swing.*;
+
 public class Appointment {
     //Representation for housing giving rent, time and location
 
@@ -54,5 +59,12 @@ public class Appointment {
         } else {
             return this;
         }
+    }
+
+    // EFFECT: Returns the appointment corresponding JSON object
+    public JSONObject getJson() {
+
+
+        return null;
     }
 }
