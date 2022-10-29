@@ -15,7 +15,8 @@ import java.util.Scanner;
 
 //Housing Application UI
 public class HousingApp {
-    private static final String JSON_STORE = "./data/workroom.json";
+    //private static final String JSON_STORE = "./data/user.json";
+    private static final String JSON_STORE = "./data/testReaderEmptySchedule.json";
     private Scanner input;
     User user;
     boolean running;

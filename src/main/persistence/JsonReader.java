@@ -18,12 +18,12 @@ public class JsonReader {
         this.source = source;
     }
 
-    // EFFECTS: reads workroom from file and returns it;
+    // EFFECTS: reads user from file and returns it;
     // throws IOException if an error occurs reading data from file
     public User read() throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
-        return parseWorkRoom(jsonObject);
+        return parseUser(jsonObject);
     }
 
 
@@ -39,15 +39,15 @@ public class JsonReader {
         return contentBuilder.toString();
     }
 
-    // EFFECTS: parses workroom from JSON object and returns it
-    private User parseWorkRoom(JSONObject jsonObject) {
+    // EFFECTS: parses user from JSON object and returns it
+    private User parseUser(JSONObject jsonObject) {
         User user = new User();
         addAppointments(user, jsonObject);
         return user;
     }
 
-    // MODIFIES: wr
-    // EFFECTS: parses thingies from JSON object and adds them to workroom
+    // MODIFIES: user
+    // EFFECTS: parses schedule from JSON object and adds them to User
     private void addAppointments(User user, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("schedule");
         for (Object json : jsonArray) {
@@ -56,8 +56,8 @@ public class JsonReader {
         }
     }
 
-    // MODIFIES: wr
-    // EFFECTS: parses thingy from JSON object and adds it to workroom
+    // MODIFIES: user
+    // EFFECTS: parses appointments from JSON object and adds it to schedule
     private void addAppointment(User user, JSONObject jsonObject) {
         String id = jsonObject.getString("ID");
         Double rent = jsonObject.getDouble("Rent");

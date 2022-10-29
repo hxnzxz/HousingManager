@@ -1,6 +1,5 @@
 package model;
 
-import model.Appointment;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -10,7 +9,6 @@ import java.util.List;
 public class User {
     // Represents a user with their current location, schedule of appointments and possible properties
     private List<Appointment> schedule;
-    private int wallet;
 
     public User() {
         this.schedule = new ArrayList<>();
@@ -55,7 +53,7 @@ public class User {
         return json;
     }
 
-    // EFFECTS: returns appoints in this schedule as a JSON array
+    // EFFECTS: returns appointments in this schedule as a JSON array
     private JSONArray scheduleToJson() {
         JSONArray jsonArray = new JSONArray();
 
