@@ -1,6 +1,8 @@
 package model;
 
 import model.Appointment;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +47,23 @@ public class User {
     // EFFECTS: Prints out all appointments from current schedule
     public List<Appointment> viewSchedule() {
         return this.schedule;
+    }
+
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("schedule", scheduleToJson());
+        return json;
+    }
+
+    // EFFECTS: returns appoints in this schedule as a JSON array
+    private JSONArray scheduleToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Appointment a : schedule) {
+            jsonArray.put(a.toJson());
+        }
+
+        return jsonArray;
     }
 
 }

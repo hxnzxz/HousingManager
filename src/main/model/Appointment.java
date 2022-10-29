@@ -15,9 +15,9 @@ public class Appointment {
 
     public Appointment(String id, double x, double y, double rent) {
         this.id = id;
-        this.rent = rent;
         this.locationX = x;
         this.locationY = y;
+        this.rent = rent;
     }
 
     public String getId() {
@@ -62,9 +62,13 @@ public class Appointment {
     }
 
     // EFFECT: Returns the appointment corresponding JSON object
-    public JSONObject getJson() {
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("ID",getId());
+        json.put("XLocation",getLocationX());
+        json.put("YLocation",getLocationY());
+        json.put("Rent",getRent());
+        return json;
 
-
-        return null;
     }
 }

@@ -2,7 +2,11 @@ package ui;
 
 import model.Appointment;
 import model.User;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -11,12 +15,17 @@ import java.util.Scanner;
 
 //Housing Application UI
 public class HousingApp {
+    private static final String JSON_STORE = "./data/workroom.json";
     private Scanner input;
     User user;
     boolean running;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // EFFECTS: Runs housing application
-    public HousingApp() {
+    public HousingApp() throws FileNotFoundException {
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         runHousingApp();
     }
 
@@ -38,6 +47,10 @@ public class HousingApp {
                 removeAppointmentOption();
             } else if (choice == 4) {
                 betterAppointmentOption();
+            } else if (choice == 5) {
+                saveUser();
+            } else if (choice == 6) {
+                loadUser();
             } else {
                 running = false;
             }
@@ -114,7 +127,32 @@ public class HousingApp {
         System.out.println("\t 2 -> Add an appointment to your schedule");
         System.out.println("\t 3 -> Remove an appointment from your schedule");
         System.out.println("\t 4 -> Compare two appointments");
-        System.out.println("\t 5 -> EXIT APPLICATION!");
+        System.out.println("\t 5 -> Save your current user schedule");
+        System.out.println("\t 6 -> Load previous user schedule");
+        System.out.println("\t 7 -> EXIT APPLICATION!");
+    }
+
+    // EFFECTS: saves the user to file
+    private void saveUser() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(user);
+            jsonWriter.close();
+            System.out.println("Saved current user schedule to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads user from file
+    private void loadUser() {
+        try {
+            user = jsonReader.read();
+            System.out.println("Loaded previous user from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
     }
 
 }
