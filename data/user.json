@@ -1,0 +1,14 @@
+{"schedule": [
+    {
+        "YLocation": 5,
+        "ID": "HaidaHouse",
+        "XLocation": 10,
+        "Rent": 500000
+    },
+    {
+        "YLocation": 900,
+        "ID": "Walter",
+        "XLocation": 50,
+        "Rent": 4500
+    }
+]}
