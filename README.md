@@ -41,7 +41,7 @@ the button to add a new Appointment to the user schedule
 next to the Remove Appointment button, then pressing the button
 to remove an appointment with the specified ID from our schedule
 - You can locate my visual component by looking at the main background of the JFrame
-or alternatively locating the source image through: Project/out/ui/HousingBackground.png
+or alternatively locating the source image through: Project/src/main/ui/HousingBackground.png
 - You can save the state of my application by pressing the "Save Current State" button at the 
 bottom right of the window.
 - You can reload the state of my application by pressing the "Load Previous State" button also

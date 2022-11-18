@@ -6,8 +6,6 @@ import persistence.JsonReader;
 import persistence.JsonWriter;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
@@ -44,9 +42,11 @@ public class GUI extends JFrame implements ActionListener {
     private int width;
 
     //Citation: Image taken from https://www.politico.com/interactives/2019/what-works-next-2019-minneapolis-housing/
-    //Location: out/production/Project-Starter/ui
+    //Location: /Project-Starter/src/main/ui
     private ImageIcon background;
 
+    //Modifies: this
+    //Effects: Runs housing application version GUI and sets title of application window
     public GUI() {
         super("Housing Manager");
         panelSetUp();
@@ -55,47 +55,43 @@ public class GUI extends JFrame implements ActionListener {
         jsonSetUp();
         setUpBackGround();
 
+        scheduleView = new JLabel("");
+        scheduleView.setBounds(25, 470, 400, 250);
+
         setUpButton();
         setUpAddAppointment();
-        scheduleView = new JLabel("pickle");
-        scheduleView.setBounds(500, 650, 100, 25);
-//        label.add(scheduleView);
 
         this.setVisible(true);
 
     }
 
-    //Modifies:
-    //Effects:
+    //Modifies: this
+    //Effects: Sets up this JFrame's window size and close function
     public void setUpFrame() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //this.pack();
         this.setSize(700, 700);
         this.setLocationRelativeTo(null);
     }
 
-    //Modifies:
-    //Effects:
+    //Modifies: this
+    //Effects: Adds a visual component as a background of this GUI
     public void setUpBackGround() {
         background = new ImageIcon(this.getClass().getResource("HousingBackground.png"));
         label = new JLabel("", background, JLabel.CENTER);
         label.setSize(this.getSize());
-        //panel.add(label);
         this.add(label);
     }
 
     //Modifies: this
-    //Effects: ..
+    //Effects: Creates new JPanel and adds it to this JFrame
     public void panelSetUp() {
         panel = new JPanel();
-        // panel.setBorder(new EmptyBorder(30, 30, 30, 30));
         panel.setBorder(null);
-        // this.setLayout(null);
         this.add(panel);
     }
 
     //Modifies: this, panel
-    //Effects: ..
+    //Effects: Initializes to add all buttons to label
     public void setUpButton() {
         height = (int) this.getSize().getHeight();
         width = (int) this.getSize().getWidth();
@@ -106,8 +102,8 @@ public class GUI extends JFrame implements ActionListener {
         saveButton();
     }
 
-    //Modifies:
-    //Effects:
+    //Modifies: this, panel
+    //Effects: Creates button tied to adding a new appointment to user schedule
     public void addButton() {
         addAppointment = new JButton("Add Appointment");
         addAppointment.setBounds(width - 675, height - 690, 160, 30);
@@ -116,18 +112,18 @@ public class GUI extends JFrame implements ActionListener {
         label.add(addAppointment);
     }
 
-    //Modifies:
-    //Effects:
+    //Modifies:this, label
+    //Effects: Creates button tied to changing scheduleView text
     public void viewButton() {
         viewSchedule = new JButton("View Schedule");
-        viewSchedule.setBounds(width - 675, height - 500, 160, 30);
+        viewSchedule.setBounds(width - 675, height - 150, 160, 30);
         viewSchedule.setActionCommand("view");
         viewSchedule.addActionListener(this);
         label.add(viewSchedule);
     }
 
-    //Modifies:
-    //Effects:
+    //Modifies: this, label
+    //Effects: Creates a button tied to removing a desired appointment from use schedule
     public void removeButton() {
         removeAppointment = new JButton("Remove Appointment");
         removeAppointment.setBounds(width - 675, height - 600, 160, 30);
@@ -135,8 +131,8 @@ public class GUI extends JFrame implements ActionListener {
         label.add(removeAppointment);
     }
 
-    //Modifies:
-    //Effects:
+    //Modifies: this, label
+    //Effects: Creates a button tied to loading previous user state functionality
     public void loadButton() {
         load = new JButton("Load Previous Save");
         load.setBounds(width - 200, height - 150, 150, 30);
@@ -145,8 +141,8 @@ public class GUI extends JFrame implements ActionListener {
         label.add(load);
     }
 
-    //Modifies:
-    //Effects:
+    //Modifies: this, label
+    //Effects: Creates a button tied to saving current user state functionality
     public void saveButton() {
         save = new JButton("Save Current State");
         save.setBounds(width - 200, height - 100, 150, 30);
@@ -155,8 +151,8 @@ public class GUI extends JFrame implements ActionListener {
         label.add(save);
     }
 
-    //Modifies: this,panel
-    // Effects: ..
+    //Modifies: this,label
+    //Effects: Creates text fields for user to add data in order to create a new appointment
     public void setUpAddAppointment() {
         xcoordinate = new JTextField("X", 10);
         xcoordinate.setToolTipText("X-Coordinate");
@@ -183,26 +179,34 @@ public class GUI extends JFrame implements ActionListener {
         label.add(id);
         label.add(rent);
         label.add(removeId);
+        label.add(scheduleView);
+        getContentPane().add(label);
     }
 
-    //Effects
+    //Effects: Creates a string of all listed appointments visible in schedule
+    //Citation: html line break method adapted from:
+    //https://stackoverflow.com/questions/1090098/newline-in-jlabel
     public String viewSchedule() {
         List<Appointment> appointments = user.viewSchedule();
-        String schedule = "";
+        String schedule = "<html>";
         if (appointments.size() == 0) {
-            return "No appointments yet!";
+            return "No Appointments Yet!";
         }
         for (Appointment appointment : appointments) {
             String build = "ID: " + appointment.getId() + " Location: (" + appointment.getLocationX()
-                    + "," + appointment.getLocationY() + ")" + " Rent: $" + appointment.getRent();
-            schedule += build + "\n";
+                    + "," + appointment.getLocationY() + ")" + " Rent: $" + appointment.getRent()
+                    + System.lineSeparator();
+            schedule += build + "<br/>";
         }
-        return schedule;
+        return schedule + "</html>";
 
     }
 
-    //Modifies;
-    //Effects:
+    //Requires: xcoordinate, ycoordinate and rent to be non-empty with fields of type double
+    //and ID to be non-empty with type String
+    //Modifies; this, user
+    //Effects: Creates a new appointment with parameters taken from xcoordinate, ycoordinate, rent and ID
+    //and adds it to User schedule
     public void doAddAppointment() {
         Appointment newAppointment = new Appointment(id.getText(),
                 Integer.parseInt(xcoordinate.getText()),
@@ -212,8 +216,9 @@ public class GUI extends JFrame implements ActionListener {
         System.out.println("Added");
     }
 
-    //Modifies:
-    //Effects:
+    //Requires: this.removeID =/= null and field type must be String
+    //Modifies:this, user
+    //Effects: Removes appoint with corresponding ID of the String in JTextField removeId
     public void setUpRemoveAppointment() {
         System.out.println("Removed");
         String targetId = removeId.getText();
@@ -225,21 +230,21 @@ public class GUI extends JFrame implements ActionListener {
         }
     }
 
-    //Modifies:
-    //Effects:
+    //Modifies:this, scheduleView, scheduleVisibility
+    //Effects: Updates current list of appointments as an on/off toggle
     public void setUpViewSchedule() {
         this.scheduleVisibility = !this.scheduleVisibility;
-//        if (scheduleVisibility) {
-//            scheduleView.setText(viewSchedule());
-//            label.add(scheduleView);
-//            getContentPane().add(label);
-//        }
-        JOptionPane.showMessageDialog(null, viewSchedule(), "Schedule", 1);
+        if (scheduleVisibility) {
+            scheduleView.setText(viewSchedule());
+        } else {
+            scheduleView.setText("");
+        }
+
 
     }
 
-    //Modifies:
-    //Effects:
+    //Modifies: this, user
+    //Effects: loads previous user state from file
     public void setUpLoad() {
         try {
             user = jsonReader.read();
@@ -250,8 +255,7 @@ public class GUI extends JFrame implements ActionListener {
 
     }
 
-    //Modifies:
-    //Effects:
+    //Effects: saves current user state to file
     public void setUpSave() {
         try {
             jsonWriter.open();
@@ -264,12 +268,13 @@ public class GUI extends JFrame implements ActionListener {
 
     }
 
+    //Effects: Initializes Json writer and reader for saving/loading functionality
     public void jsonSetUp() {
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
     }
 
-    @Override
+    //Effects: Reads action even and performs equivalent button function
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == addAppointment) {
             doAddAppointment();
