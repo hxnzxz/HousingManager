@@ -32,6 +32,17 @@ and locations between two housings
 - As a user, I want to be able to reload a pre-existing schedule that I saved previously
 
 
-## External Sources
--https://www.java67.com/2015/10/how-to-solve-concurrentmodificationexception-in-java-arraylist.html
-was used to help fix ArrayList's remove() function causing errors
+# Instructions for Grader
+
+- You can generate the first required event related to adding Xs to a Y by filling in the required
+text fields next to the "Add Appointment button" then pressing
+the button to add a new Appointment to the user schedule
+- You can generate the second required event related to adding Xs to a Y by filling in the field
+next to the Remove Appointment button, then pressing the button
+to remove an appointment with the specified ID from our schedule
+- You can locate my visual component by looking at the main background of the JFrame
+or alternatively locating the source image through: Project/out/ui/HousingBackground.png
+- You can save the state of my application by pressing the "Save Current State" button at the 
+bottom right of the window.
+- You can reload the state of my application by pressing the "Load Previous State" button also
+at the bottom right of the window.
