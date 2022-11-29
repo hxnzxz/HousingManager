@@ -1,13 +1,13 @@
 {"schedule": [
     {
-        "YLocation": 90,
+        "YLocation": 500,
         "ID": "abc",
-        "XLocation": 50,
-        "Rent": 50
+        "XLocation": 500,
+        "Rent": 900
     },
     {
         "YLocation": 50,
-        "ID": "ID",
+        "ID": "lab",
         "XLocation": 50,
         "Rent": 900
     }
