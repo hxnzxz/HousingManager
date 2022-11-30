@@ -76,8 +76,6 @@ public class GUI extends JFrame implements ActionListener {
     //Modifies: this
     //Effects: Adds a visual component as a background of this GUI
     public void setUpBackGround() {
-//        background = new ImageIcon(this.getClass().getResource("HousingBackground.png"));
-//        background = new ImageIcon("HousingBackground.png");
         background = new ImageIcon("./data/HousingBackground.png");
         label = new JLabel("", background, JLabel.CENTER);
         label.setSize(this.getSize());
