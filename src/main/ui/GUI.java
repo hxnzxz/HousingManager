@@ -70,6 +70,8 @@ public class GUI extends JFrame implements ActionListener {
 
     //Modifies: this
     //Effects: Sets up this JFrame's window size and close function
+    // CITE:https://stackoverflow.com/questions/16295942/java-swing-adding-action-listener-for-exit-on-close
+    // used to implement action listener for closing window
     public void setUpFrame() {
         // this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.addWindowListener(new WindowAdapter() {
