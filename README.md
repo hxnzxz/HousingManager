@@ -46,3 +46,11 @@ or alternatively locating the source image through: Project/src/main/ui/HousingB
 bottom right of the window.
 - You can reload the state of my application by pressing the "Load Previous State" button also
 at the bottom right of the window.
+
+# Phase 4: Task 2
+Log example featuring adding and removing appointment with ID:"abc"
+Thu Dec 01 22:57:17 PST 2022
+Added new appointment with assigned ID: abc
+
+Thu Dec 01 22:57:21 PST 2022
+Removed appointment with associated ID: abc

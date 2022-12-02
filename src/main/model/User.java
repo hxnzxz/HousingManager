@@ -19,6 +19,8 @@ public class User {
     // MODIFIES: this
     // EFFECTS: Adds a new appointment onto user schedule
     public void addAppointment(Appointment target) {
+        EventLog.getInstance().logEvent(new Event("Added new appointment with assigned ID: "
+                + target.getId()));
         this.schedule.add(target);
 
     }
@@ -27,6 +29,8 @@ public class User {
     // MODIFIES: this
     // EFFECTS: Removes appointment from user schedule
     public void removeAppointment(Appointment target) {
+        EventLog.getInstance().logEvent(new Event("Removed appointment with associated ID: "
+                + target.getId()));
         this.schedule.remove(target);
     }
 

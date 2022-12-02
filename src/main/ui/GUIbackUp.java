@@ -1,7 +1,6 @@
 package ui;
 
 import model.Appointment;
-import model.EventLog;
 import model.User;
 import persistence.JsonReader;
 import persistence.JsonWriter;
@@ -9,16 +8,13 @@ import persistence.JsonWriter;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.List;
 
 //Creates Graphical User interface representing a housing manager
-public class GUI extends JFrame implements ActionListener {
+public class GUIbackUp extends JFrame implements ActionListener {
     private JPanel panel;
     private JLabel label;
     private JLabel scheduleView;
@@ -50,7 +46,7 @@ public class GUI extends JFrame implements ActionListener {
 
     //Modifies: this
     //Effects: Runs housing application version GUI and sets title of application window
-    public GUI() {
+    public GUIbackUp() {
         super("Housing Manager");
         panelSetUp();
         user = new User();
@@ -71,16 +67,7 @@ public class GUI extends JFrame implements ActionListener {
     //Modifies: this
     //Effects: Sets up this JFrame's window size and close function
     public void setUpFrame() {
-        // this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                LogPrinter lp = new LogPrinter();
-                System.out.println("potato");
-                lp.printLog(EventLog.getInstance());
-                e.getWindow().dispose();
-            }
-        });
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(700, 700);
         this.setLocationRelativeTo(null);
     }
@@ -225,7 +212,7 @@ public class GUI extends JFrame implements ActionListener {
                 Integer.parseInt(xcoordinate.getText()),
                 Integer.parseInt(ycoordinate.getText()),
                 Integer.parseInt(rent.getText()));
-        this.user.addAppointment(newAppointment);
+        this.user.viewSchedule().add(newAppointment);
         System.out.println("Added");
     }
 
@@ -233,20 +220,14 @@ public class GUI extends JFrame implements ActionListener {
     //Modifies:this, user
     //Effects: Removes appoint with corresponding ID of the String in JTextField removeId
     public void setUpRemoveAppointment() {
-        try {
-            System.out.println("Removed");
-            String targetId = removeId.getText();
-            for (Iterator<Appointment> itr = user.viewSchedule().iterator(); itr.hasNext(); ) {
-                Appointment target = itr.next();
-                if (target.getId().equals(targetId)) {
-                    this.user.removeAppointment(target);
-                    //itr.remove();
-                }
+        System.out.println("Removed");
+        String targetId = removeId.getText();
+        for (Iterator<Appointment> itr = user.viewSchedule().iterator(); itr.hasNext(); ) {
+            Appointment target = itr.next();
+            if (target.getId().equals(targetId)) {
+                itr.remove();
             }
-        } catch (ConcurrentModificationException e) {
-            ;
         }
-
     }
 
     //Modifies:this, scheduleView, scheduleVisibility
