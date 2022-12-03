@@ -54,3 +54,21 @@ Added new appointment with assigned ID: abc
 
 Thu Dec 01 22:57:21 PST 2022
 Removed appointment with associated ID: abc
+
+# Phase 4: Task 3
+
+Possible Improvements:
+- Guarding user inputs with exception handling
+- For ease of visually resizing the window, change the 
+background image coordinates, to match a scalar of the frame's x and y
+coordinates
+- In regard to logging events, I was only able to implement the bare
+minimum of removing or adding x from/to y. With JSON
+loading or saving states, it should also be logged when
+a user exits the application.
+- As a final and more realistic refactor, as a user I would
+like to be able to run multiple instances rather than
+constantly overwriting over the previously saved data, perhaps a login
+method or simply the option to switch users in the application.
+
+
